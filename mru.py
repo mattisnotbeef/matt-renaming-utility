@@ -93,11 +93,6 @@ while True:
             print('\nTask completed!\n')
             folder = os.listdir(router)
 
-
-                    
-        elif continuer == 0:
-            print('\nReturning...\n')
-            
         else:
             print('Invalid input!')
     else:
