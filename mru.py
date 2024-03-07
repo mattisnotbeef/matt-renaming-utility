@@ -69,18 +69,22 @@ while True:
     
     #File renamer    
     elif prompt == 1:
+        
         renamer = int(input('\n1 to rename a single file\n2 to rename an entire folder of files starting from 1 to X\n3 rename each file individually\n4 to add a prefix to the name of each file\n'))
+        
         if renamer == 1:
             namefile = input('\nWhat is the name of the file you would like to rename?\n')
             newnamefile = input('\nWhat would you like to rename the file to?\n')
             filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
             os.rename(namefile, newnamefile + filetype)
             folder = os.listdir(router)
+        
         elif renamer == 2:
             filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
             looper_numbers()
             print('\nTask completed!\n')
             folder = os.listdir(router)
+            
         elif renamer == 3:
             filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
             looper_individual()
