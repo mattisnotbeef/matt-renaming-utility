@@ -1,5 +1,4 @@
 #matt's renaming utility: quickly renames files en masse or lets you rename them quicker than you could in a GUI
-#also works as a file converter if you're into that
 
 #NOTE : please place this program in the folder you plan to modify before doing anything
 
