@@ -10,6 +10,7 @@ import os
 
 filetype = ''
 router = ''
+bannedtypes = []
 
 #Home folder
 while router == '':
@@ -27,11 +28,15 @@ def looper_numbers():
     length = len(folder)
     indexer = 0
     name = folder[indexer]
+    filetype = folder[indexer]
     while indexer < length:
         name = folder[indexer]
+        splitter = name.split('.')
+        filetype = splitter[1]
         if name != 'mru.py':
-            os.rename(str(name), str(newnamernum) + str(filetype))
-            newnamernum += 1
+            if filetype not in bannedtypes:
+                os.rename(str(name), str(newnamernum) + '.' + str(filetype))
+                newnamernum += 1
         indexer += 1
 
 #individual renamer
@@ -39,11 +44,14 @@ def looper_individual():
     length = len(folder)
     indexer = 0
     name = folder[indexer]
+    filetype = name.split('.')
     while indexer < length:
         name = folder[indexer]
+        splitter = name.split('.')
+        filetype = splitter[1]
         if name != 'mru.py':
             newnamer = input('\nPlease input your name here\n')
-            os.rename(str(name), str(newnamer) + str(filetype))
+            os.rename(str(name), str(newnamer) + '.' + str(filetype))
         indexer += 1
         
 #prefix adderoner
@@ -60,7 +68,7 @@ def looper_prefix():
 
 #Main program
 while True:
-    prompt = int(input('Welcome to matt\'s file utility: Please choose one of the following:\n1 to rename files\n2 for other fun utilities\n0 to quit\n'))
+    prompt = int(input('Welcome to matt\'s file utility: Please choose one of the following:\n1 to rename files\n0 to quit\n'))
 
     #Program quit
     if prompt == 0:
@@ -70,33 +78,35 @@ while True:
     #File renamer    
     elif prompt == 1:
         
-        renamer = int(input('\n1 to rename a single file\n2 to rename an entire folder of files starting from 1 to X\n3 rename each file individually\n4 to add a prefix to the name of each file\n'))
+        renamer = int(input('\n1 to rename an entire folder of files starting from 1 to X\n2 rename each file individually\n3 to add a prefix to the name of each file\n'))
         
         if renamer == 1:
-            namefile = input('\nWhat is the name of the file you would like to rename?\n')
-            newnamefile = input('\nWhat would you like to rename the file to?\n')
-            filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
-            os.rename(namefile, newnamefile + filetype)
-            folder = os.listdir(router)
-        
-        elif renamer == 2:
-            filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
+            while True:
+                bannedfile = str(input('\nPlease enter a file type to ignore\n(Press enter to continue\n'))
+                bannedtypes.append(bannedfile)
+                if bannedfile == '':
+                    break
             looper_numbers()
             print('\nTask completed!\n')
             folder = os.listdir(router)
+            bannedtypes = []
             
-        elif renamer == 3:
-            filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
+        elif renamer == 2:
             looper_individual()
             print('\nNo more files to rename!\n')
             folder = os.listdir(router)
 
-        elif renamer == 4:
-            filetype = str(input('\nPlease enter a file type (ex - .txt)\n'))
+        elif renamer == 3:
+            while True:
+                bannedfile = str(input('\nPlease enter a file type to ignore\n(Press enter to continue\n'))
+                bannedtypes.append(bannedfile)
+                if bannedfile == '':
+                    break
             looper_prefix()
             print('\nTask completed!\n')
             folder = os.listdir(router)
-
+            bannedtypes = []
+            
         else:
             print('Invalid input!')
     else:
