@@ -61,8 +61,11 @@ def looper_prefix():
     prefixer = input('\nPlease input your prefix here\n')
     while indexer < length:
         name = folder[indexer]
+        splitter = name.split('.')
+        filetype = splitter[1]
         if name != 'mru.py':
-            os.rename(str(name), str(prefixer + name) + str(filetype))
+            if filetype not in bannedtypes:
+                os.rename(str(name), str(prefixer + name + '.' + filetype))
         indexer += 1
 
 #Main program
