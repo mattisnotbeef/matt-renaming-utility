@@ -84,7 +84,7 @@ while True:
         
         if renamer == 1:
             while True:
-                bannedfile = str(input('\nPlease enter a file type to ignore\n(Press enter to continue\n'))
+                bannedfile = str(input('\nPlease enter a file type to ignore\nPress enter to continue\n'))
                 bannedtypes.append(bannedfile)
                 if bannedfile == '':
                     break
@@ -100,7 +100,7 @@ while True:
 
         elif renamer == 3:
             while True:
-                bannedfile = str(input('\nPlease enter a file type to ignore\n(Press enter to continue\n'))
+                bannedfile = str(input('\nPlease enter a file type to ignore\nPress enter to continue\n'))
                 bannedtypes.append(bannedfile)
                 if bannedfile == '':
                     break
