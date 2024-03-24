@@ -4,7 +4,6 @@
 
 #NOTE2 : this program has only been tested in the windows 11 file system
 
-import random
 import os
 
 filetype = ''
